@@ -1,0 +1,21 @@
+version: '3'
+services:
+  bank-service:
+    build:
+      context: ./bank-service
+    ports:
+      - 3000:3000
+  transaction-service:
+    build:
+      context: ./transaction-service
+    ports:
+      - 3001:3001
+    depends_on:
+      - bank-service
+  sheet-service:
+    build:
+      context: ./sheet-service
+    ports:
+      - 3002:3002
+    depends_on:
+      - transaction-service
